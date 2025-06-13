@@ -10,7 +10,7 @@ class Categories(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True)
 
     class Meta:
-        db_table = "catigory"
+        db_table = "category"
 
     def __str__(self):
         return self.name
@@ -31,6 +31,7 @@ class Products(models.Model):
 
     class Meta:
         db_table = "product"
+        ordering = ("id",)
 
     def __str__(self):
         return f"{self.name} количество - {self.quantity}"
