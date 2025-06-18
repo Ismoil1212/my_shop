@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
-from django.conf.global_settings import AUTH_USER_MODEL, MEDIA_ROOT, MEDIA_URL
+from django.conf.global_settings import (
+    AUTH_USER_MODEL,
+    LOGIN_URL,
+    MEDIA_ROOT,
+    MEDIA_URL,
+)
 from django.views import static
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -44,6 +49,7 @@ INSTALLED_APPS = [
     "main",
     "goods",
     "users",
+    "carts",
 ]
 
 MIDDLEWARE = [
@@ -147,3 +153,4 @@ INTERNAL_IPS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.User"
+LOGIN_URL = "/user/login/"
