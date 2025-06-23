@@ -2,6 +2,9 @@
 
 {% load static %}
 
+{% block model_cart %}
+{% include "includes/cart_button.html" %}
+{% endblock model_cart %}
 
 {% block css %}<link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">{% endblock css %}
 
