@@ -38,7 +38,7 @@ def catalog(request, category_slug=None):
         "q": query,
     }
 
-    return render(request, "goods/catalog.html", context)
+    return render(request, "goods/catalog.html", context=context)
 
 
 def products(request, product_slug):

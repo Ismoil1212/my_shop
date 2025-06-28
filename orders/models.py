@@ -5,8 +5,6 @@ from django.template.defaultfilters import length
 from traitlets import default
 
 from goods.models import Products
-import orders
-import orders.admin
 from users.models import User
 
 

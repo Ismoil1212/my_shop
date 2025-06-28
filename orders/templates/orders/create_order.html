@@ -27,7 +27,7 @@
                     <h3 class="text-center">Детали заказа</h3>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <form action="{% url "orders:create_order" %}" form="post">
+                            <form action="{% url "orders:create_order" %}" method="post">
                                 {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -52,8 +52,8 @@
                                         <input type="text" class="form-control" id="id_phone_number" value="{% if form.phone_number.value %}{{form.phone_number.value}}{% endif %}" name="phone_number"
                                             placeholder="В формате: XXX-XXX-XX-XX"
                                             required>
-                                        {% if form.pfone_number.errors %}
-                                            <div class="alert alert-danger alert-dismissible fade show">{{form.pfone_number.errors}}</div>
+                                        {% if form.phone_number.errors %}
+                                            <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
                                         {% endif %}
                                     </div>
                                     <div class="col-md-12 mb-3">
@@ -74,7 +74,7 @@
                                         <label for="id_delivery_address" class="form-label">Адрес
                                             доставки*:</label>
                                         <textarea class="form-control" id="id_delivery_address"
-                                            value="{% if form.address_delivery.value %}{{form.address_delivery.value}}{% endif %}"
+                                            value="{% if form.delivery_address.value %}{{form.delivery_address.value}}{% endif %}"
                                             name="delivery_address" rows="2"></textarea>
                                         {% if form.delivery_address.errors %}
                                             <div class="alert alert-danger alert-dismissible fade show">{{form.delivery_address.errors}}</div>
@@ -93,6 +93,9 @@
                                                 id="id_payment_on_get" value="1">
                                             <label class="form-check-label" for="id_payment_on_get">Наличными/картой
                                                 при плучении</label>
+                                            {% if form.payment_on_get.errors %}
+                                                <div class="alert alert-danger alert-dismissible fade show">{{form.payment_on_get.errors}}</div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
