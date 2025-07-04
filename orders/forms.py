@@ -31,6 +31,6 @@ class CreateOrderForm(forms.Form):
         pattern = re.compile(r"^\d{9}$")
 
         if not pattern.match(data):
-            raise forms.ValidationError("Not enought numbers")
+            raise forms.ValidationError("Not the right amount numbers")
 
         return data
