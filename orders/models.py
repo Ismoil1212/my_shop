@@ -1,3 +1,4 @@
+from math import prod
 from tkinter import CASCADE
 from django.db import models
 from django.forms import CharField
@@ -62,13 +63,13 @@ class OrderItem(models.Model):
     )
     name = models.CharField(max_length=150, verbose_name="name")
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name="price")
-    quantity = models.CharField(default=0, verbose_name="quantity")
+    quantity = models.PositiveIntegerField(default=0, verbose_name="Количество")
     created_stamp = models.DateTimeField(auto_now_add=True, verbose_name="Sell date")
 
     class Meta:
         db_table = "Order_item"
 
-    def product_price(self):
+    def products_price(self):
         return round(self.price * self.quantity, 2)
 
     objects = OrderitemQueryset.as_manager()

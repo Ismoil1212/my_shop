@@ -128,14 +128,14 @@
                                                         <td><a class="text-white" href="{% url "goods:product" item.product.slug %}">{{ item.name }}</a></td>
                                                         <td>{{ item.quantity }}</td>
                                                         <td>{{ item.price }}</td>
-                                                        <td>{{ item.products.sell_price }}</td>                                                        
+                                                        <td>{{ item.products_price }}</td>                                                     
                                                     </tr>
                                                     {% endfor %}
                                                 </tbody>
                                             </table>
                                             <div class="d-flex justify-content-between">
                                                 <p><strong>Итого:</strong></p>
-                                                <p><strong>{{ products.sell_price }}</strong></p>
+                                                <p><strong>{{1}}</strong></p>
 
                                             </div>
                                         </div>

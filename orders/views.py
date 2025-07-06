@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.db import transaction
-from django.forms import ValidationError
+from django.core.exceptions import ValidationError
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -36,34 +36,34 @@ class CreateOrderView(LoginRequiredMixin, FormView):
                         payment_on_get=form.cleaned_data["payment_on_get"],
                     )
 
-                    for cart_item in cart_items:
-                        product = cart_item.product
-                        name = cart_item.product.name
-                        price = cart_item.product.sell_price()
-                        quantity = cart_item.quantity
+                for cart_item in cart_items:
+                    product = cart_item.product
+                    name = cart_item.product.name
+                    price = cart_item.product.sell_price()
+                    quantity = cart_item.quantity
 
-                        if product.quantity < quantity:
-                            raise ValidationError(
-                                f"Not enought quantity {name} | Product quantity: {product.quantity}"
-                            )
-
-                        OrderItem.objects.create(
-                            order=order,
-                            product=product,
-                            name=name,
-                            price=price,
-                            quantity=quantity,
+                    if product.quantity < quantity:
+                        raise ValidationError(
+                            f"Not enought quantity {name} | Product quantity: {product.quantity}"
                         )
-                        product.quantity -= quantity
-                        product.save()
 
-                    cart_items.delete()
+                    OrderItem.objects.create(
+                        order=order,
+                        product=product,
+                        name=name,
+                        price=price,
+                        quantity=quantity,
+                    )
+                    product.quantity -= quantity
+                    product.save()
 
-                    messages.success(self.request, "Order was created successfully")
-                    return redirect("users:profile")
+                cart_items.delete()
+
+                messages.success(self.request, "Order was created successfully")
+                return redirect("users:profile")
 
         except ValidationError as e:
-            messages.success(self.request, str(e))
+            messages.error(self.request, str(e))
             return redirect("orders:create_order")
 
     def form_invalid(self, form):

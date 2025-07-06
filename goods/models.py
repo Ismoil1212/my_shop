@@ -1,6 +1,3 @@
-from os import name
-from statistics import quantiles
-from unicodedata import category
 from django.core.validators import slug_re
 from django.db import models
 from django.urls import reverse
@@ -46,5 +43,5 @@ class Products(models.Model):
     def sell_price(self):
         if self.discount:
             return round(self.price - self.price * self.discount / 100, 2)
-
-        return self.price
+        else:
+            return round(self.price, 2)
