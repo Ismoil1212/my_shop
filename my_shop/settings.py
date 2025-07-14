@@ -10,6 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
+
+
 from pathlib import Path
 
 from django.conf.global_settings import (
@@ -28,13 +34,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-xemh_4lk0318h3kzj^f&vhi1-8$$@g6!nuhea&k#cdx2os&_6e"
-
+SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+RENDER_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME", default=None)
+if RENDER_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_HOSTNAME)
 
 # Application definition
 
@@ -89,13 +96,14 @@ WSGI_APPLICATION = "my_shop.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+    "default": env.db(default="postgres://shop_admin:zxc^ ,^@localhost:1206/shop")
+}
+
+
+CACHES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "shop",
-        "USER": "shop_admin",
-        "PASSWORD": "zxc^ ,^",
-        "HOST": "localhost",
-        "PORT": "1206",
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / "cache",
     }
 }
 
@@ -135,7 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 MEDIA_URL = "media/"

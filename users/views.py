@@ -8,9 +8,13 @@ from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
+from django.utils.cache import get_cache_key
 from django.views.generic import CreateView, TemplateView, UpdateView
 from carts.models import Cart
+from django.core.cache import cache
+from common.mixins import CacheMixins
 
+from common.mixins import CacheMixins
 from orders.models import Order, OrderItem
 from users.forms import (
     UserLoginForm,
@@ -158,7 +162,7 @@ class UserLoginView(LoginView):
 #     return render(request, "users/login.html", context)
 
 
-class UserProfileView(LoginRequiredMixin, UpdateView):
+class UserProfileView(LoginRequiredMixin, CacheMixins, UpdateView):
     template_name = "users/profile.html"
     form_class = UserProfileForm
     success_url = reverse_lazy("users:profile")
@@ -176,7 +180,8 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = "Home - Profile"
-        context["orders"] = (
+
+        orders = (
             Order.objects.filter(user=self.request.user)
             .prefetch_related(
                 Prefetch(
@@ -185,6 +190,10 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
                 )
             )
             .order_by("-id")
+        )
+
+        context["orders"] = self.set_get_cache(
+            orders, f"orders_for_user_{self.request.user.id}", 300
         )
         return context
 
