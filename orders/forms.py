@@ -1,8 +1,6 @@
 import re
 from django import forms
 
-from orders.models import Order
-
 
 class CreateOrderForm(forms.Form):
     first_name = forms.CharField()

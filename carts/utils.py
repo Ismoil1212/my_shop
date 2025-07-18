@@ -1,5 +1,3 @@
-from venv import create
-from django.contrib import sessions
 from carts.models import Cart
 
 

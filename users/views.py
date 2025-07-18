@@ -1,14 +1,12 @@
-from turtle import update
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from urllib import request
 from django.contrib.auth.decorators import login_required
-from django.contrib import auth, messages, sessions
+from django.contrib import auth, messages
 from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
-from django.utils.cache import get_cache_key
 from django.views.generic import CreateView, TemplateView, UpdateView
 from carts.models import Cart
 from django.core.cache import cache

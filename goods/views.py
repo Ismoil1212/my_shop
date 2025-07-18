@@ -1,11 +1,5 @@
-from gc import get_objects
-from re import search
-from unicodedata import category
-from django.db.models import F, ExpressionWrapper, FloatField
-from django.core.paginator import Paginator
-from django.shortcuts import get_list_or_404, get_object_or_404, render
+from django.shortcuts import get_list_or_404
 from django.views.generic import DetailView, ListView
-from traitlets import default
 
 from goods.models import Products
 from goods.utils import q_search

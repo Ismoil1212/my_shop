@@ -1,9 +1,6 @@
-from math import prod
 from tkinter import CASCADE
 from django.db import models
-from django.forms import CharField
 from django.template.defaultfilters import length
-from traitlets import default
 
 from goods.models import Products
 from users.models import User

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.db import transaction
 from django.core.exceptions import ValidationError
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import FormView

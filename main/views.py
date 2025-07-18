@@ -1,9 +1,4 @@
-from urllib import response
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.views.generic import TemplateView
-
-from goods.models import Categories
 
 
 class IndexView(TemplateView):

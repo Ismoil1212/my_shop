@@ -1,11 +1,6 @@
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from django.template.loader import render_to_string
 from django.views import View
-from django.views.generic import RedirectView
 from carts.mixins import CartMixin
-from carts.templatetags.carts_tags import user_carts
-from carts.utils import get_user_carts
 from goods.models import Products
 from carts.models import Cart
 
