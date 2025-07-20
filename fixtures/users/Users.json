@@ -1,0 +1,82 @@
+[
+    {
+        "model": "users.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$RaQj90VA1O1FZp6iI4XfYg$NcDj606yEcRs5sspsBYXiMau53Y6aKq3L1jgyD/KzQ8=",
+            "last_login": "2025-07-02T14:50:26.262Z",
+            "is_superuser": true,
+            "username": "Kakashii",
+            "first_name": "Kakashii",
+            "last_name": "Hatakee",
+            "email": "qwertyqwerty@gmail.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2025-06-14T14:19:37.061Z",
+            "image": "users_images/PURPOSE-OF-THE-LOGO.jpg",
+            "phone_number": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$vMoAtbvehHk1kf1iJXs0Yy$JAk5kj0z9y24rHH3Xcv4WVk9JiRmCNZpN6rwpfkOBLo=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Kakashiizxc",
+            "first_name": "Kakashi",
+            "last_name": "Hatake",
+            "email": "asdqwe@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-06-15T18:17:06.605Z",
+            "image": "",
+            "phone_number": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$VfBrgvWVYGdHHlves9s6XP$mhTfpmvZy2LLG172zUZikXdXG00A0IcvOyZjtpWqMKk=",
+            "last_login": "2025-06-16T11:40:45.427Z",
+            "is_superuser": false,
+            "username": "Kakashiiizxc",
+            "first_name": "Kakashi123",
+            "last_name": "Hatake123",
+            "email": "asdqwe@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-06-15T18:18:19.269Z",
+            "image": "users_images/╨б╨Сb.png",
+            "phone_number": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$0NYX2NButeU4loQqGbr3wm$LN1ix9fUoeF3PGixsq3j5CEMhRHMDeLH96HfL7h96ak=",
+            "last_login": "2025-06-26T10:37:24.420Z",
+            "is_superuser": false,
+            "username": "kakashi",
+            "first_name": "kakashi",
+            "last_name": "hatake",
+            "email": "kakashi@gmail.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2025-06-26T10:37:24.166Z",
+            "image": "",
+            "phone_number": null,
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
