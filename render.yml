@@ -22,6 +22,13 @@ services:
           property: connectionString
 
 databases:
-  - name: myshop-db
-    databaseName: shop
-    user: shop_admin
+- name: My_shop_db_Smile
+  databaseName: my_shop_db_e3mx
+  user: shop_admin
+  plan: free
+  region: oregon
+  ipAllowList:
+  - source: 0.0.0.0/0
+    description: everywhere
+  postgresMajorVersion: "16"
+version: "1"
