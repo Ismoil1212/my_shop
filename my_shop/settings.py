@@ -96,16 +96,7 @@ WSGI_APPLICATION = "my_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "my_shop_db_e3mx",
-        "USER": "shop_admin",
-        "PASSWORD": "1wka3GwAHvONsJCeynJnIetgodKBuHl1",
-        "HOST": "dpg-d1qfv73ipnbc73913rg0-a",
-        "PORT": "5432",
-    }
-}
+DATABASES = {"default": env.db("DATABASE_URL")}
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
