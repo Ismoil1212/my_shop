@@ -36,15 +36,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-DEBUG = os.getenv("DEBUG", "false").lower() == "true"
+# DEBUG = os.getenv("DEBUG", "false").lower() == "true"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
-SECRET_KEY = os.getenv("SECRET_KEY", "your-fallback-secret")
+# SECRET_KEY = os.getenv("SECRET_KEY", "your-fallback-secret")
 
-# DEBUG = env.bool("DEBUG", default=False)
-# SECRET_KEY = env("SECRET_KEY")
-# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+DEBUG = env.bool("DEBUG", default=False)
+SECRET_KEY = env("SECRET_KEY")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
 RENDER_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME", default=None)
@@ -99,21 +99,21 @@ TEMPLATES = [
 WSGI_APPLICATION = "my_shop.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# # Database
+# # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES = {"default": env.db("DATABASE_URL")}
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "shop",
-        "USER": "postgres",
-        "PASSWORD": "1234",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": "shop",
+#         "USER": "postgres",
+#         "PASSWORD": "1234",
+#         "HOST": "localhost",
+#         "PORT": "5432",
+#     }
+# }
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
