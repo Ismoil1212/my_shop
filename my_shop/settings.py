@@ -103,9 +103,7 @@ WSGI_APPLICATION = "my_shop.wsgi.application"
 # # Database
 # # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-databade_url = os.environ.get("DATABASE_URL")
-
-DATABASES = dj_database_url.parse(databade_url)
+DATABASES = {"default": env.db()}
 
 # DATABASES = {
 #     "default": {
