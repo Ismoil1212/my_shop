@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import dj_database_url
 import os
 
 import whitenoise
@@ -36,15 +37,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# DEBUG = os.getenv("DEBUG", "false").lower() == "true"
+DEBUG = os.environ.get("DEBUG", "false").lower() == "true"
 
-# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
-# SECRET_KEY = os.getenv("SECRET_KEY", "your-fallback-secret")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-DEBUG = env.bool("DEBUG", default=False)
-SECRET_KEY = env("SECRET_KEY")
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+# DEBUG = env.bool("DEBUG", default=False)
+# SECRET_KEY = env("SECRET_KEY")
+# ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
 RENDER_HOSTNAME = env("RENDER_EXTERNAL_HOSTNAME", default=None)
@@ -102,7 +103,9 @@ WSGI_APPLICATION = "my_shop.wsgi.application"
 # # Database
 # # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {"default": env.db("DATABASE_URL")}
+databade_url = os.environ.get("DATABASE_URL")
+
+DATABASES = dj_database_url.parse(databade_url)
 
 # DATABASES = {
 #     "default": {
