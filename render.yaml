@@ -21,10 +21,11 @@ services:
           name: myshop-db
           property: connectionString
 
+# Exported from Render on 2025-07-26T08:27:12Z
 databases:
-- name: My_shop_db_Smile
-  databaseName: my_shop_db_e3mx
-  user: shop_admin
+- name: My_db
+  databaseName: my_db_utem
+  user: my_db_utem_user
   plan: free
   region: oregon
   ipAllowList:
