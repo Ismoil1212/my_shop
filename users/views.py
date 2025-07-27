@@ -50,43 +50,10 @@ class UserRegistrationView(CreateView):
         return context
 
 
-# def registration(request):
-
-#     if request.method == "POST":
-
-#         form = UserRegistrationForm(data=request.POST)
-#         if form.is_valid():
-#             form.save()
-
-#             session_key = request.session.session_key
-
-#             user = form.instance
-#             auth.login(request, user)
-
-#             if session_key:
-#                 Cart.objects.filter(session_key=session_key).update(user=user)
-
-#             messages.success(
-#                 request,
-#                 f"{user.username}, you have successfully registered and logged into your account",
-#             )
-#             return HttpResponseRedirect(reverse("main:index"))
-
-#     else:
-#         form = UserRegistrationForm()
-
-#     context = {
-#         "title": "Home - registration",
-#         "form": form,
-#     }
-
-#     return render(request, "users/registration.html", context)
-
-
 class UserLoginView(LoginView):
     template_name = "users/login.html"
     form_class = UserLoginForm
-    # success_url = reverse_lazy("main:index")
+    success_url = reverse_lazy("main:index")
 
     def get_success_url(self):
         redirect_page = self.request.POST.get("next", None)
@@ -119,45 +86,6 @@ class UserLoginView(LoginView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Home - authorisation"
         return context
-
-
-# def login(request):
-
-#     if request.method == "POST":
-
-#         form = UserLoginForm(data=request.POST)
-#         if form.is_valid():
-#             username = request.POST["username"]
-#             password = request.POST["password"]
-#             user = auth.authenticate(username=username, password=password)
-
-#             session_key = request.session.session_key
-
-#             if user:
-#                 auth.login(request, user)
-#                 messages.success(
-#                     request,
-#                     f"{user.username}, you have successfully logged into your account",
-#                 )
-
-#                 if session_key:
-#                     Cart.objects.filter(session_key=session_key).update(user=user)
-
-#                 redirect_page = request.POST.get("next", None)
-#                 if redirect_page and redirect_page != reverse("user:logout"):
-#                     return HttpResponseRedirect(request.POST.get("next"))
-
-#                 return HttpResponseRedirect(reverse("main:index"))
-
-#     else:
-#         form = UserLoginForm()
-
-#     context = {
-#         "title": "Home - login",
-#         "form": form,
-#     }
-
-#     return render(request, "users/login.html", context)
 
 
 class UserProfileView(LoginRequiredMixin, CacheMixins, UpdateView):
@@ -196,43 +124,6 @@ class UserProfileView(LoginRequiredMixin, CacheMixins, UpdateView):
         return context
 
 
-# @login_required
-# def profile(request):
-
-#     if request.method == "POST":
-
-#         form = UserProfileForm(
-#             data=request.POST, instance=request.user, files=request.FILES
-#         )
-
-#         if form.is_valid():
-#             form.save()
-#             messages.success(
-#                 request,
-#                 "Your profile was successfully updated",
-#             )
-
-#             return HttpResponseRedirect(reverse("user:profile"))
-
-#     else:
-#         form = UserProfileForm(instance=request.user)
-
-#     orders = (
-#         Order.objects.filter(user=request.user)
-#         .prefetch_related(
-#             Prefetch(
-#                 "orderitem_set",
-#                 queryset=OrderItem.objects.select_related("product"),
-#             )
-#         )
-#         .order_by("-id")
-#     )
-
-#     context = {"title": "Home - Profile", "form": form, "orders": orders}
-
-#     return render(request, "users/profile.html", context)
-
-
 class UserCartView(TemplateView):
     template_name = "users/users_cart.html"
 
@@ -240,10 +131,6 @@ class UserCartView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = "Home - Cart"
         return context
-
-
-# def users_cart(request):
-#     return render(request, "users/users_cart.html")
 
 
 @login_required

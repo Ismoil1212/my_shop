@@ -11,16 +11,6 @@ class IndexView(TemplateView):
         return context
 
 
-# def index(request):
-
-#     context = {
-#         "title": "Home - Главная ",
-#         "content": "Магазин мебели HOME",
-#     }
-
-#     return render(request, "main/index.html", context)
-
-
 class AboutView(TemplateView):
     template_name = "main/about.html"
 
@@ -30,14 +20,3 @@ class AboutView(TemplateView):
         context["content"] = "About us"
         context["text_on_page"] = "Information about us"
         return context
-
-
-# def about(request):
-
-#     context = {
-#         "title": "О нас",
-#         "content": "О нас",
-#         "text_on_page": "информация о том что какой у нас качественный товар и вообще мы классные)",
-#     }
-
-#     return render(request, "main/about.html", context)

@@ -16,8 +16,8 @@
                     <form action="{% url "users:profile" %}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
 
-                        {% if request.GET.get %}
-                            <input type="hidden" name="text" value{{request.GET.get}}>
+                        {% if request.GET.text %}
+                            <input type="hidden" name="text" value="{{ request.GET.text }}">
                         {% endif %}
 
                         <div class="row">
